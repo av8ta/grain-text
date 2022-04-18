@@ -1,0 +1,16 @@
+import { words, unwords, lines, unlines, every } from "./string"
+import { isDigit } from "./char"
+
+let w = "grain is awesome!"
+assert words(w) == [> "grain", "is", "awesome!"]
+assert unwords(words(w)) == w
+
+let l = "hello\n\nworld\r\nbob\n\rthis is a sentence\n\ralice"
+assert lines(l) ==
+[> "hello", "", "world", "bob", "this is a sentence", "alice"]
+assert unlines(lines(l)) == "hello\n\nworld\nbob\nthis is a sentence\nalice"
+
+assert every(isDigit, "a string 0-9") == false
+assert every(isDigit, "0123456789") == true
+assert every(c => c == 'c', "ccccc") == true
+assert every(c => c == 'c', "ccacc") == false

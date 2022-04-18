@@ -1,6 +1,7 @@
 import String from "string"
 import Array from "array"
 import List from "list"
+import { isDigit } from "./char"
 
 export let words = string => String.split(" ", string)
 export let unwords = words => Array.join(" ", words)
@@ -13,11 +14,7 @@ export let lines = string =>
 
 export let unlines = lines => Array.join("\n", lines)
 
-let w = "grain is awesome!"
-assert words(w) == [> "grain", "is", "awesome!"]
-assert unwords(words(w)) == w
-
-let l = "hello\n\nworld\r\nbob\n\rthis is a sentence\n\ralice"
-assert lines(l) ==
-[> "hello", "", "world", "bob", "this is a sentence", "alice"]
-assert unlines(lines(l)) == "hello\n\nworld\nbob\nthis is a sentence\nalice"
+export let every = (predicate, string) => {
+  let chars = String.explode(string)
+  Array.every(predicate, chars)
+}
