@@ -1,0 +1,20 @@
+import Char from "char"
+
+let isChar = char => Char.isValid(Char.code(char))
+
+assert Char.code('0') == 48
+assert Char.code('9') == 57
+let isDigit = digit => {
+  let code = Char.code(digit)
+  code >= 48 && code <= 57
+}
+
+assert isChar('c') == true
+
+assert isDigit('0') == true
+assert isDigit('9') == true
+assert isDigit('a') == false
+
+assert isDigit(Char.pred('0')) == false
+assert isDigit(Char.succ('0')) == true
+assert isDigit(Char.succ('9')) == false
