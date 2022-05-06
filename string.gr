@@ -1,6 +1,7 @@
 import String from "string"
 import Array from "array"
 import List from "list"
+import Char from "char"
 import { isDigit } from "./char"
 
 export let words = string => String.split(" ", string)
@@ -14,7 +15,17 @@ export let lines = string =>
 
 export let unlines = lines => Array.join("\n", lines)
 
-export let every = (predicate, string) => {
-  let chars = String.explode(string)
-  Array.every(predicate, chars)
-}
+export let every = (predicate, string) =>
+  Array.every(predicate, String.explode(string))
+
+export let some = (predicate, string) =>
+  Array.some(predicate, String.explode(string))
+
+export let containsChar = (char, string) =>
+  String.contains(Char.toString(char), string)
+
+export let map = (fn, string) =>
+  String.implode(Array.map(fn, String.explode(string)))
+
+export let empty = string => String.length(string) == 0
+export let notEmpty = string => String.length(string) != 0

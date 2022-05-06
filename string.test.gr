@@ -1,4 +1,13 @@
-import { words, unwords, lines, unlines, every } from "./string"
+import {
+  words,
+  unwords,
+  lines,
+  unlines,
+  every,
+  some,
+  containsChar,
+  map,
+} from "./string"
 import { isDigit } from "./char"
 
 let w = "grain is awesome!"
@@ -14,3 +23,23 @@ assert every(isDigit, "a string 0-9") == false
 assert every(isDigit, "0123456789") == true
 assert every(c => c == 'c', "ccccc") == true
 assert every(c => c == 'c', "ccacc") == false
+
+assert some(isDigit, "a string 0-9") == true
+assert some(isDigit, "0123456789") == true
+assert some(isDigit, "a string without digits") == false
+assert some(c => c == 'c', "aacbb") == true
+assert some(c => c == 'c', "CaxyZCC") == false
+
+assert containsChar('c', "no C here") == false
+assert containsChar('c', "now c here") == true
+
+let tea = "I'm a teapot"
+let teapot = "I'm a TeapoT"
+
+assert map(c => {
+  match (c) {
+    't' => 'T',
+    _ => c,
+  }
+}, tea) ==
+teapot
